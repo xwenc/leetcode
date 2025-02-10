@@ -11,16 +11,6 @@ https://www.youtube.com/watch?v=27Q0nMM6vg0
   • 如果当前节点值不重复，直接 prev = cur，让 prev 向前移动。
 */
 
-class ListNode {
-  val: number;
-  next: ListNode | null;
-
-  constructor(val?: number, next?: ListNode | null) {
-    this.val = val === undefined ? 0 : val;
-    this.next = next === undefined ? null : next;
-  }
-}
-
 function deleteDuplicates(head: ListNode | null): ListNode | null {
     if(!head) return null; // 如果链表为空，直接返回 null
     const dummy: ListNode = new ListNode(0, head); // 创建虚拟头节点，指向 head
