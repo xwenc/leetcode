@@ -28,4 +28,15 @@ class TreeNode {
   }
 }
 
-export { ListNode, TreeNode, _Node };
+class RandomNode {
+  val: number
+  next: RandomNode | null
+  random: RandomNode | null
+  constructor(val?: number, next?: RandomNode | null, random?: RandomNode | null) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+    this.random = (random===undefined ? null : random)
+  }
+}
+
+export { ListNode, TreeNode, _Node, RandomNode };
