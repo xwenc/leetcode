@@ -12,19 +12,24 @@
 	•	否则，list2.next 继续与 list1 递归合并。
  */
 
-  function mergeTwoListsRA(list1: ListNode | null, list2: ListNode | null): ListNode | null {
-    if(list1 === null) return list2;
-    if(list2 === null) return list1;
-    if(list1.val < list2.val) {
-      list1.next = mergeTwoListsRA(list1.next, list2);
-      return list1;
-    } else {
-      list2.next = mergeTwoListsRA(list1, list2.next);
-      return list2;
-    }
-  }
+import { ListNode } from "./types";
 
-  /**
+function mergeTwoListsRA(
+  list1: ListNode | null,
+  list2: ListNode | null
+): ListNode | null {
+  if (list1 === null) return list2;
+  if (list2 === null) return list1;
+  if (list1.val < list2.val) {
+    list1.next = mergeTwoListsRA(list1.next, list2);
+    return list1;
+  } else {
+    list2.next = mergeTwoListsRA(list1, list2.next);
+    return list2;
+  }
+}
+
+/**
    *  我们使用 虚拟头节点 (dummy) 来简化链表操作：
       1.	创建 dummy 作为新链表的起点，同时 cur 指针用于拼接节点。
       2.	比较 list1 和 list2 当前节点的值：
@@ -34,19 +39,22 @@
       4.	返回 dummy.next 即为新链表的头节点。
    */
 
-  function mergeTwoListsTRA(list1: ListNode | null, list2: ListNode | null): ListNode | null {
-    let dummy = new ListNode(-1);
-    let cur = dummy;
-    while(list1 && list2) {
-      if(list1.val < list2.val) {
-        cur.next = list1;
-        list1 = list1.next;
-      } else {
-        cur.next = list2;
-        list2 = list2.next;
-      }
-      cur = cur.next;
+function mergeTwoListsTRA(
+  list1: ListNode | null,
+  list2: ListNode | null
+): ListNode | null {
+  let dummy = new ListNode(-1);
+  let cur = dummy;
+  while (list1 && list2) {
+    if (list1.val < list2.val) {
+      cur.next = list1;
+      list1 = list1.next;
+    } else {
+      cur.next = list2;
+      list2 = list2.next;
     }
-    cur.next = list1 || list2;
-    return dummy.next;
+    cur = cur.next;
   }
+  cur.next = list1 || list2;
+  return dummy.next;
+}
